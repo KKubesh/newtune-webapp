@@ -1,9 +1,9 @@
 import React from "react";
-import { CatalogButton } from "./CatalogButton";
-import { HeaderMenu } from "./HeaderMenu";
+import { CatalogButton } from "./shared/CatalogButton";
+import { HeaderMenu } from "./shared/HeaderMenu";
 import { SongTile } from "./results/SongTile";
-import { SavesAndUserButton } from "./SavesAndUserButton";
-import { SearchButton } from "./SearchButton";
+import { SavesAndUserButton } from "./shared/SavesAndUserButton";
+import { SearchButton } from "./shared/SearchButton";
 
 export default function UserPage() {
     const savedSongsMock = ["song1", "song2", "song3", "song4", "song5"];

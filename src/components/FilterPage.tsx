@@ -2,10 +2,10 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { FilterItem } from "./filters/FilterItem";
-import { FooterControls } from "./FooterControls";
-import { HeaderMenu } from "./HeaderMenu";
+import { FooterControls } from "./shared/FooterControls";
+import { HeaderMenu } from "./shared/HeaderMenu";
 import { Filter } from "./types";
-import { SavesAndUserButton } from "./SavesAndUserButton";
+import { SavesAndUserButton } from "./shared/SavesAndUserButton";
 
 export default function FilterPage() {
     const hardCodedFilters: Filter[] = [

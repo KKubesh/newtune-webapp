@@ -1,9 +1,9 @@
 import React from "react";
-import { FooterControls } from "./FooterControls";
-import { HeaderMenu } from "./HeaderMenu";
+import { FooterControls } from "./shared/FooterControls";
+import { HeaderMenu } from "./shared/HeaderMenu";
 import { SongTile } from "./results/SongTile";
-import { SavesAndUserButton } from "./SavesAndUserButton";
-import { SearchButton } from "./SearchButton";
+import { SavesAndUserButton } from "./shared/SavesAndUserButton";
+import { SearchButton } from "./shared/SearchButton";
 
 export default function CatalogPage() {
     const songsMock = ["song1", "song2", "song3", "song4", "song5", "song6", "song7", "song8", "song1", "song2", "song3", "song4", "song5", "song6", "song7", "song8", "song1", "song2", "song3", "song4", "song5", "song6", "song7", "song8", "song1", "song2", "song3", "song4", "song5", "song6", "song7", "song8", "song1", "song2", "song3", "song4", "song5", "song6", "song7", "song8"];

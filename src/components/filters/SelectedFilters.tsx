@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
-import { SelectedOption } from "../SelectedOption";
+import { SelectedOption } from "./SelectedOption";
 
 type SelectedFiltersProps = {
     selected: string[];
