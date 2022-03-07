@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import "./user/user.css";
 import { CatalogButton } from "./shared/CatalogButton";
 import { HeaderMenu } from "./shared/HeaderMenu";
-import { SongTile } from "./results/SongTile";
 import { SavesAndUserButton } from "./shared/SavesAndUserButton";
 import { SearchButton } from "./shared/SearchButton";
+import { SavedSongs } from "./user/SavedSongs";
+import { Login } from "./user/Login";
+import { SettingsButton } from "./user/SettingsButton";
 
 export default function UserPage() {
-    const savedSongsMock = ["song1", "song2", "song3", "song4", "song5"];
+    const [view, setView] = useState<string>("songs");
     return (
         <div className="Relative">
             <HeaderMenu rightMenuItem={<SavesAndUserButton />} />
@@ -14,18 +17,19 @@ export default function UserPage() {
             <div className="Search-Container-Solid">
                 <div className="Catalog-Container-Solid">
                     <div className="User-Container">
-                        <div className="Results-Title">Saved Songs</div>
-                        <div className="Results-Container">
-                            {savedSongsMock.map((song, index) => {
-                                return <SongTile key={`${song}-${index}`} title={song} saved={true} />
-                            })}
-                        </div>
+                        {view === "songs" && <SavedSongs setView={setView} />}
+                        {view !== "songs" && <Login loggedIn={view !== "login"} setView={setView} />}
                     </div>
                 </div>
             </div>
             <div style={{ position: "absolute", bottom: 0, right: 0, margin: ".5rem" }}>
                 <CatalogButton />
             </div>
+            {view !== "login" &&
+                <div style={{ position: "absolute", bottom: 0, left: 0, marginLeft: "2.5rem", marginBottom: "1.5rem" }}>
+                    <SettingsButton setView={setView} view={view} />
+                </div>
+            }
         </div>
     )
 }

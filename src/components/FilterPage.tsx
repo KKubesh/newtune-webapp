@@ -6,6 +6,7 @@ import { FooterControls } from "./shared/FooterControls";
 import { HeaderMenu } from "./shared/HeaderMenu";
 import { Filter } from "./types";
 import { SavesAndUserButton } from "./shared/SavesAndUserButton";
+import "./filters/filters.css";
 
 export default function FilterPage() {
     const hardCodedFilters: Filter[] = [
@@ -56,7 +57,7 @@ export default function FilterPage() {
                 <div className="Filters-Container" >
                     {
                         hardCodedFilters.map(filter => {
-                            return < FilterItem key={filter.type} filter={filter} />
+                            return <FilterItem key={filter.type} filter={filter} />
                         })
                     }
                 </div>

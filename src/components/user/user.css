@@ -1,0 +1,44 @@
+.Login-Container {
+    display: flex;
+    flex-direction: column;
+}
+
+.Login-Buttons-Container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.Login-Buttons {
+    padding-top: 20px;
+}
+
+a {
+    padding: 5px;
+    color: #666;
+}
+
+.User-Input {
+  width: 235px;
+  border: 1px solid #DFCB70;
+  border-radius: 20px;
+  background-color: #F6F6F6;
+}
+
+label {
+  font-size: 1rem;
+  padding: 18px 0px 8px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #aaa;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #aaa;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #aaa;
+}

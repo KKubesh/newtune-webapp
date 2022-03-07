@@ -12,7 +12,7 @@ export const CatalogButton = ({ arrow }: CatalogButtonProps) => {
     return (
         <div className="Footer-Catalog-Button" onClick={() => navigate("../catalog")}>
             {arrow === "left" && <FontAwesomeIcon size="2x" icon={faChevronLeft} color="#8F2F50" transform="right-4 down-2" />}
-            <button style={{ height: "40px", width: "40px", backgroundColor: "#8F2F50" }} onClick={() => console.log("USER")}>
+            <button style={{ height: "40px", width: "40px", backgroundColor: "#8F2F50" }} onClick={() => console.log("CATALOG")}>
                 <FontAwesomeIcon size="2x" icon={faGripHorizontal} color="#FFF" />
             </button>
             {arrow === "right" && <FontAwesomeIcon size="2x" icon={faChevronRight} color="#8F2F50" transform="right-4 down-2" />}

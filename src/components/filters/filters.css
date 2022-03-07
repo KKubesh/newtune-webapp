@@ -1,0 +1,162 @@
+.Search-Artist-Container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 15px 0px;
+}
+
+.Input-Button {
+  height: 46px;
+  border-radius: 0px 20px 20px 0px;
+  justify-content: center;
+  background-color: #9FDCDD;
+  border: 2px solid #609191;
+  padding: 0px 10px 0px;
+}
+
+.Filters-Container {
+  overflow-y: scroll;
+}
+
+.Filter-Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80vw;
+}
+
+.Filter-Title-Container {
+  width: 80vw;
+  color: #609191;
+  font-size: 1.5rem;
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Filter-Options-Container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.Option-Container {
+  min-height: 90px;
+  min-width: 90px;
+  border-radius: 20px 0px 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #609191;
+  margin: 10px;
+  background-color: #609191;
+}
+
+.Option-Shadow {
+  height: 110px;
+  min-width: 100px;
+  -moz-box-shadow: inset -60px 0px 40px -40px #FFF;
+  -webkit-box-shadow: inset -60px 0px 40px -40px #FFF;
+  box-shadow: inset -80px 0px 40px -40px #FFF;
+  position: absolute;
+  right: 0;
+  pointer-events:none;
+}
+
+.Filter-Options {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: 100px;
+  overflow-y: scroll;
+}
+
+.Selectable-Button {
+  width: 135px;
+  height: 32px;
+  border: 2px solid #609191;
+  border-radius: 20px;
+  background-color: #FFF;
+  justify-content: center;
+  display: flex;
+  padding: 8px 0px 0px;
+  font-size: 1.25rem;
+  color: #666;
+  margin: 10px 5px;
+}
+
+.Selectable-Button-Selected {
+  width: 135px;
+  height: 32px;
+  border: 2px solid #609191;
+  border-radius: 20px;
+  background-color: #609191;
+  justify-content: center;
+  padding: 8px 0px 0px;
+  font-size: 1.25rem;
+  color: #FFF;
+  display: flex;
+  margin: 10px 5px;
+}
+
+.Selected-Filters {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Add-Filter-Button {
+  margin: 0px 42px 0px 10px;
+}
+
+.Selected-Option-Container {
+  height: 90px;
+  width: 90px;
+  border-radius: 20px 0px 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #609191;
+  border: 2px solid #609191;
+  margin: 10px 20px 0px 0px;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.Selected-Close-Button {
+  position: absolute; 
+  right: 0;
+  margin: 10px 18px;
+}
+
+@media only screen and (orientation: landscape) {
+    .Filter-Container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 80vh;
+    }
+
+    .Filter-Title-Container {
+        width: 80vh;
+        color: #609191;
+        font-size: 1.5rem;
+        padding-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+input {
+  width: 135px;
+  height: 32px;
+  border: 2px solid #609191;
+  border-right: none;
+  border-radius: 20px 0px 0px 20px;
+  background-color: #F6F6F6;
+  justify-content: center;
+  padding: 5px 0px 5px 15px;
+  font-size: 1.25rem;
+  color: #666;
+}
