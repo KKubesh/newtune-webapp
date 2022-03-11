@@ -84,6 +84,19 @@
   align-items: center;
 }
 
+.Description {
+  color: #666;
+  font-size: 1.25rem;
+}
+
+.Song-Description {
+  padding: 20px;
+  width: 80%;
+  color: #666;
+  font-size: 1.25rem;
+}
+
+
 .Padding-Right {
   padding-right: 10px;
 }

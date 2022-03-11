@@ -8,14 +8,15 @@ type SettingsButtonProps = {
 }
 
 export const SettingsButton = ({ view, setView }: SettingsButtonProps) => {
+    const isSongsView = view === "songs";
     return (
         <>
             <button onClick={() => setView("login")}>temp login view</button>
-            <div onClick={view !== "songs" ? () => setView("songs") : () => setView("settings")}>
+            <div onClick={isSongsView ? () => setView("settings") : () => setView("songs")}>
                 <button style={{ height: "40px", width: "40px", backgroundColor: "#DFCB70" }}>
-                    <FontAwesomeIcon size="2x" icon={view === "songs" ? faCog : faBookmark} color="#FFF" />
+                    <FontAwesomeIcon size={isSongsView ? "2x" : "lg"} icon={isSongsView ? faCog : faBookmark} color="#FFF" />
                 </button>
-                {view !== "songs" && <FontAwesomeIcon size="2x" icon={faChevronRight} color="#DFCB70" transform="right-4 down-2" />}
+                {!isSongsView && <FontAwesomeIcon size="2x" icon={faChevronRight} color="#DFCB70" transform="right-4 down-2" />}
 
             </div>
         </>

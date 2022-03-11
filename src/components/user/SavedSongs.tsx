@@ -6,7 +6,7 @@ type SavedSongsProps = {
 }
 
 export const SavedSongs = ({ setView }: SavedSongsProps) => {
-    const savedSongsMock = ["song1", "song2", "song3", "song4", "song5"];
+    const savedSongsMock = ["song4", "song8"];
 
     return (
         <>

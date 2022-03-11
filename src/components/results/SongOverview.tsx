@@ -14,16 +14,24 @@ export const SongOverview = ({ song }: SongOverviewType) => {
     return (
         <div className="Catalog-Container">
             <div className="Title">Some Song Title</div>
-            <div className="Song-Overview-Container">
-                <Button
-                    text={isSaved ? "Saved" : "Save"}
-                    color="#DFCB70"
-                    secondary={!isSaved}
-                    width="120px"
-                    handleClick={() => console.log("BOOKMARK")}
-                >
-                    <FontAwesomeIcon size="lg" icon={faBookmark} color={isSaved ? "#FFF" : "#DFCB70"} />
-                </Button>
+            {/* <div className="Song-Overview-Container"> */}
+            <Button
+                text={isSaved ? "Saved" : "Save"}
+                color="#DFCB70"
+                secondary={!isSaved}
+                width="120px"
+                handleClick={() => console.log("BOOKMARK")}
+            >
+                <FontAwesomeIcon size="lg" icon={faBookmark} color={isSaved ? "#FFF" : "#DFCB70"} />
+            </Button>
+            {/* </div> */}
+            <div className="Song-Description">
+                <div className="Subtitle">
+                    test
+                </div>
+                <div className="Description">
+                    test
+                </div>
             </div>
         </div>
     )
