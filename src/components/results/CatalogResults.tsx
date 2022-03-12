@@ -12,7 +12,7 @@ export const CatalogResults = ({ songs, handleClick }: CatalogResultsProps) => {
             <div className="Title">Results</div>
             <div className="Songs-Container">
                 {songs.map((song, index) => {
-                    return <SongTile key={`${song}-${index}`} title={song} saved={index === 3 || index === 7} handleClick={handleClick} />
+                    return <SongTile key={`${song}-${index}`} song={{ title: song, date_added: { seconds: 1, nanoseconds: 2 } }} saved={index === 3 || index === 7} handleClick={handleClick} />
                 })}
             </div>
         </div>

@@ -13,7 +13,7 @@ export const SavedSongs = ({ setView }: SavedSongsProps) => {
             <div className="Title">Saved Songs</div>
             <div className="Songs-Container">
                 {savedSongsMock.map((song, index) => {
-                    return <SongTile key={`${song}-${index}`} title={song} saved={true} handleClick={setView} />
+                    return <SongTile key={`${song}-${index}`} song={{ title: song, date_added: { seconds: 1, nanoseconds: 2 } }} saved={true} handleClick={setView} />
                 })}
             </div>
         </>

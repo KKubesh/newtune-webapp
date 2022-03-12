@@ -9,7 +9,7 @@ export const UserSettings = () => {
             <div className="Title">User Settings</div>
             <div className="Songs-Container">
                 {savedSongsMock.map((song, index) => {
-                    return <SongTile key={`${song}-${index}`} title={song} saved={true} />
+                    return <SongTile key={`${song}-${index}`} song={{ title: song, date_added: { seconds: 1, nanoseconds: 2 } }} saved={true} />
                 })}
             </div>
         </>

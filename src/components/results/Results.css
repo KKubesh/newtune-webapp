@@ -1,0 +1,43 @@
+.Song-Info { 
+  overflow: hidden;
+}
+
+.Bold {
+    font-weight: bold;
+}
+
+.Song-Tile-Title {
+  /* animation properties */
+  -moz-transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+  
+  -moz-animation: song-detail-scroll 10s linear infinite;
+  -webkit-animation: song-detail-scroll 10s linear infinite;
+  animation: song-detail-scroll 10s linear infinite;
+}
+
+/* for Firefox */
+@-moz-keyframes song-detail-scroll {
+  from { -moz-transform: translateX(-100%); }
+  to { -moz-transform: translateX(0%); }
+}
+
+/* for Chrome */
+@-webkit-keyframes song-detail-scroll {
+  from { -webkit-transform: translateX(-100%); }
+  to { -webkit-transform: translateX(0%); }
+}
+
+@keyframes song-detail-scroll {
+  to {
+    -moz-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+  from {
+    -moz-transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+  }
+}

@@ -192,10 +192,14 @@
 }
 
 .Song-Tile-Container {
-  height: calc(33vw - 40px);
+  /* height: calc(33vw - 40px);
   width: calc(33vw - 40px);
   max-width: 100px;
   max-height: 100px;
+  min-width: 80px;
+  min-height: 80px; */
+  height: 80px;
+  width: 80px;
   border-radius: 20px 20px 0px 20px;
   display: flex;
   align-items: center;
@@ -209,10 +213,14 @@
 }
 
 .Song-Tile-Container-Saved {
-  height: calc(33vw - 40px);
+  /* height: calc(33vw - 40px);
   width: calc(33vw - 40px);
   max-width: 100px;
   max-height: 100px;
+  min-width: 80px;
+  min-height: 80px; */
+  height: 80px;
+  width: 80px;
   border-radius: 20px 20px 20px 0px;
   display: flex;
   align-items: center;
@@ -346,6 +354,8 @@
     width: calc(33vh - 40px);
     max-width: 100px;
     max-height: 100px;
+    min-width: 80px;
+    min-height: 80px;
     border-radius: 20px 20px 0px 20px;
     display: flex;
     align-items: center;
@@ -363,6 +373,8 @@
     width: calc(33vh - 40px);
     max-width: 100px;
     max-height: 100px;
+    min-width: 80px;
+    min-height: 80px;
     border-radius: 20px 20px 20px 0px;
     display: flex;
     align-items: center;
@@ -413,6 +425,96 @@
   position: absolute; 
   right: 0;
   margin: 1rem;
+}
+
+.Song-Tile {
+  height: calc(33vw - 40px);
+  width: calc(33vw - 40px);
+  max-width: 100px;
+  max-height: 100px;
+  min-width: 80px;
+  min-height: 80px;
+  text-overflow: ellipsis;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Song-Text {
+  overflow: hidden;
+  white-space: nowrap;
+  max-height: 50px;
+  padding: 8px;
+}
+
+.Song-Tile-Title {
+  font-weight: bold;
+  padding-bottom: 4px;
+  text-overflow: ellipsis;
+}
+
+.Song-Tile-Title-Animate {
+  font-weight: bold;
+  display: inline-block;
+  /* animation properties */
+  -moz-transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+  
+  -moz-animation: song-detail-scroll 10s linear infinite;
+  -webkit-animation: song-detail-scroll 10s linear infinite;
+  animation: song-detail-scroll 10s linear infinite;
+}
+
+.Song-Tile-Artist {
+  font-weight: normal;
+  text-overflow: ellipsis;
+}
+
+.Song-Tile-Artist-Animate {
+  font-weight: normal;
+  display: inline-block;
+  /* animation properties */
+  -moz-transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+  
+  -moz-animation: song-detail-scroll 10s linear infinite;
+  -webkit-animation: song-detail-scroll 10s linear infinite;
+  animation: song-detail-scroll 10s linear infinite;
+}
+
+.Song-Tile-Numbers {
+  font-weight: normal;
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 10px;
+}
+
+/* for Firefox */
+@-moz-keyframes song-detail-scroll {
+  from { -moz-transform: translateX(-80%); }
+  to { -moz-transform: translateX(0%); }
+}
+
+/* for Chrome */
+@-webkit-keyframes song-detail-scroll {
+  from { -webkit-transform: translateX(-80%); }
+  to { -webkit-transform: translateX(0%); }
+}
+
+@keyframes song-detail-scroll {
+  to {
+    -moz-transform: translateX(-80%);
+    -webkit-transform: translateX(-80%);
+    transform: translateX(-80%);
+  }
+  from {
+    -moz-transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+  }
 }
 
 .Footer-Container {
