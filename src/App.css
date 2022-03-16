@@ -33,6 +33,10 @@
   padding-left: 10px;
 }
 
+.Button-Padding {
+  padding: 10px;
+}
+
 .Relative {
   position: relative;
 }
@@ -72,9 +76,11 @@
 .Title {
   display: flex;
   justify-content: center;
+  text-align: center;
   color: #666;
   font-size: 1.5rem;
   padding-top: 2rem;
+  width: 60%;
 }
 
 .Subtitle {
@@ -87,6 +93,7 @@
 .Description {
   color: #666;
   font-size: 1.25rem;
+  padding: .5rem 1rem;
 }
 
 .Song-Description {
@@ -95,7 +102,6 @@
   color: #666;
   font-size: 1.25rem;
 }
-
 
 .Padding-Right {
   padding-right: 10px;
@@ -192,14 +198,12 @@
 }
 
 .Song-Tile-Container {
-  /* height: calc(33vw - 40px);
-  width: calc(33vw - 40px);
+  height: calc(33vw - 48px);
+  width: calc(33vw - 48px);
   max-width: 100px;
   max-height: 100px;
   min-width: 80px;
-  min-height: 80px; */
-  height: 80px;
-  width: 80px;
+  min-height: 80px;
   border-radius: 20px 20px 0px 20px;
   display: flex;
   align-items: center;
@@ -213,14 +217,12 @@
 }
 
 .Song-Tile-Container-Saved {
-  /* height: calc(33vw - 40px);
-  width: calc(33vw - 40px);
+  height: calc(33vw - 48px);
+  width: calc(33vw - 48px);
   max-width: 100px;
   max-height: 100px;
   min-width: 80px;
-  min-height: 80px; */
-  height: 80px;
-  width: 80px;
+  min-height: 80px;
   border-radius: 20px 20px 20px 0px;
   display: flex;
   align-items: center;
@@ -445,10 +447,12 @@
   overflow: hidden;
   white-space: nowrap;
   max-height: 50px;
-  padding: 8px;
+  padding: 4px;
+  margin: 4px;
 }
 
 .Song-Tile-Title {
+  font-size: .9rem;
   font-weight: bold;
   padding-bottom: 4px;
   text-overflow: ellipsis;
@@ -468,6 +472,7 @@
 }
 
 .Song-Tile-Artist {
+  font-size: .9rem;
   font-weight: normal;
   text-overflow: ellipsis;
 }
@@ -486,10 +491,10 @@
 }
 
 .Song-Tile-Numbers {
-  font-weight: normal;
+  font-size: .8rem;
   display: flex;
   justify-content: space-between;
-  padding: 4px 10px;
+  padding: 6px 10px;
 }
 
 /* for Firefox */
