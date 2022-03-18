@@ -5,13 +5,30 @@ type ButtonProps = {
     text: string;
     secondary?: boolean;
     width?: string;
-    handleClick: () => void;
+    handleClick?: () => void;
     children?: ReactNode;
+    submit?: boolean;
+    disabled?: boolean;
 }
 
-export const Button = ({ color, text, handleClick, secondary = false, children, width }: ButtonProps) => {
+export const Button = ({
+    color,
+    text,
+    handleClick,
+    secondary = false,
+    children,
+    width,
+    submit = false,
+    disabled = false
+}: ButtonProps) => {
+    const buttonColor = disabled ? "#C4C4C4" : color;
     return (
-        <button style={secondary ? { border: `2px solid ${color}`, width: width } : { backgroundColor: color, width: width }} className="Button" onClick={handleClick}>
+        <button style={
+            secondary ? { border: `2px solid ${buttonColor}`, width: width } : { backgroundColor: buttonColor, width: width }}
+            className="Button"
+            onClick={handleClick}
+            type={submit && "submit" || undefined}
+        >
             {text}
             {children && <div className="Button-Child">{children}</div>}
         </button>

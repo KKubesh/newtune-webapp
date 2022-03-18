@@ -37,6 +37,19 @@
   padding: 10px;
 }
 
+.Center-Forms {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Error {
+  color: #C73E1D;
+  background-color: #FFB6C1;
+  padding: 10px;
+  border-radius: 10px;
+}
+
 .Relative {
   position: relative;
 }
@@ -211,7 +224,7 @@
   background-color: #EFC1D4;
   border: 2px solid #8F2F50;
   margin: 5px;
-  color: #FFF;
+  color: #8F2F50;
   font-weight: bold;
   font-size: 1.25rem;
 }
@@ -365,7 +378,7 @@
     background-color: #EFC1D4;
     border: 2px solid #8F2F50;
     margin: 5px;
-    color: #FFF;
+    color: #8F2F50;
     font-weight: bold;
     font-size: 1.25rem;
   }

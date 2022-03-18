@@ -2,6 +2,7 @@ import { faDrum, faGaugeSimpleHigh, faHeartPulse } from "@fortawesome/free-solid
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Song } from "../types";
+import { ReactComponent as Metronome } from '../../svgs/metronome.svg';
 
 type SongTileProps = {
     song: Song;
@@ -19,7 +20,6 @@ export const SongTile = ({ song, saved = false, handleClick }: SongTileProps) =>
         genres: "Rock",
     }
 
-    console.log(defaultSongProps.title.length > 7 ? `${defaultSongProps.title.substring(0, 8)}...` : defaultSongProps.title)
     return (
         <div className={saved ? "Song-Tile-Container-Saved" : "Song-Tile-Container"} onClick={handleClick ? () => handleClick("song", song.title) : undefined}>
             <div className="Song-Tile">
@@ -38,11 +38,11 @@ export const SongTile = ({ song, saved = false, handleClick }: SongTileProps) =>
                 <div className="Song-Tile-Numbers">
                     <div className="Song-Tile-Bpm">
                         {defaultSongProps.bpm}
-                        <FontAwesomeIcon icon={faHeartPulse} size="xs" transform="right-3" color={saved ? "#DFCB70" : "#8F2F50"} />
+                        <Metronome style={{ height: "10px", width: "10px", padding: "1px 2px 0px", marginBottom: "-.5px", fill: `${saved ? "#666" : "#8F2F50"}` }} />
                     </div>
                     <div className="Song-Tile-Difficulty">
                         {defaultSongProps.difficulty}
-                        <FontAwesomeIcon icon={faGaugeSimpleHigh} size="xs" transform="right-3" color={saved ? "#DFCB70" : "#8F2F50"} />
+                        <FontAwesomeIcon icon={faGaugeSimpleHigh} size="xs" transform="right-3" color={saved ? "#666" : "#8F2F50"} />
                     </div>
                 </div>
             </div>

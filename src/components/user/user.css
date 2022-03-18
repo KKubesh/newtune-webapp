@@ -25,6 +25,14 @@ a {
   background-color: #F6F6F6;
 }
 
+.Or-Split {
+  display: flex;
+  width: 100%;
+  padding-top: 15px;
+  justify-content: center;
+  color: #666;
+}
+
 label {
   font-size: 1rem;
   padding: 18px 0px 8px;

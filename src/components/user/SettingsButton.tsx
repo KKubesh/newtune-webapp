@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBookmark, faChevronRight, faCog } from '@fortawesome/free-solid-svg-icons'
+import { useAuth } from "../../context/AuthContext";
 
 type SettingsButtonProps = {
     view: string;
@@ -8,15 +9,20 @@ type SettingsButtonProps = {
 }
 
 export const SettingsButton = ({ view, setView }: SettingsButtonProps) => {
-    const isSongsView = view === "songs";
+    const { currentUser } = useAuth();
+    const isSettingsView = view === "settings";
+
+    if (!currentUser) {
+        return null;
+    }
+
     return (
         <>
-            <button onClick={() => setView("login")}>temp login view</button>
-            <div onClick={isSongsView ? () => setView("settings") : () => setView("songs")}>
+            <div onClick={!isSettingsView ? () => setView("settings") : () => setView("user")}>
                 <button style={{ height: "40px", width: "40px", backgroundColor: "#DFCB70" }}>
-                    <FontAwesomeIcon size={isSongsView ? "2x" : "lg"} icon={isSongsView ? faCog : faBookmark} color="#FFF" />
+                    <FontAwesomeIcon size={!isSettingsView ? "2x" : "lg"} icon={!isSettingsView ? faCog : faBookmark} color="#FFF" />
                 </button>
-                {!isSongsView && <FontAwesomeIcon size="2x" icon={faChevronRight} color="#DFCB70" transform="right-4 down-2" />}
+                {isSettingsView && <FontAwesomeIcon size="2x" icon={faChevronRight} color="#DFCB70" transform="right-4 down-4" />}
             </div>
         </>
     )
