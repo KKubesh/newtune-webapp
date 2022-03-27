@@ -8,18 +8,24 @@ import CatalogPage from "./components/CatalogPage";
 import './App.css';
 import UserPage from "./components/UserPage";
 import { AuthProvider } from "./context/AuthContext";
+import { UserProvider } from "./context/UserContext";
+import { FilterProvider } from "./context/FilterContext";
 
 const rootElement = document.getElementById("root");
 render(
   <AuthProvider>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="filter" element={<FilterPage />} />
-        <Route path="catalog" element={<CatalogPage />} />
-        <Route path="user" element={<UserPage />} />
-      </Routes>
-    </BrowserRouter>
+    <UserProvider>
+      <FilterProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="filter" element={<FilterPage />} />
+            <Route path="catalog" element={<CatalogPage />} />
+            <Route path="user" element={<UserPage />} />
+          </Routes>
+        </BrowserRouter>
+      </FilterProvider>
+    </UserProvider>
   </AuthProvider>,
   rootElement
 );

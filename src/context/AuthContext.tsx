@@ -1,3 +1,4 @@
+import { signInAnonymously } from "firebase/auth";
 import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { auth } from "../firebase";
 
@@ -11,6 +12,7 @@ type AuthContextState = {
     signup: (email: string, password: string) => void;
     login: (email: string, password: string) => void;
     logout: () => void;
+    authenticateAnonymously: () => void;
 }
 
 export const AuthContext = createContext<AuthContextState | undefined>(undefined);
@@ -29,16 +31,20 @@ export const AuthProvider = ({
         return auth.signInWithEmailAndPassword(email, password);
     }
 
-    const updatePassword = () => {
-        // return auth.confirmPasswordReset();
-    }
-
     const logout = () => {
         return auth.signOut();
     }
 
+    const authenticateAnonymously = async () => {
+        return await signInAnonymously(auth);
+    };
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user: any) => {
+            // if (!user) {
+            //     console.log("Now Authenticating")
+            //     authenticateAnonymously();
+            // }
             setCurrentUser(user);
             setLoading(false);
         });
@@ -54,6 +60,7 @@ export const AuthProvider = ({
                 signup,
                 login,
                 logout,
+                authenticateAnonymously,
             }}
         >
             {!loading && children}
@@ -61,12 +68,12 @@ export const AuthProvider = ({
     )
 }
 
-export const useAuth = () => {
+export const useAuthContext = () => {
     const context = useContext(AuthContext);
 
     if (!context) {
         throw new Error(
-            "useAuthState must be used within the AuthProvider Context",
+            "useAuthContext must be used within the AuthProvider Context",
         );
     }
     return context;

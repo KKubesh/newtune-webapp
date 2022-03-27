@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { Button } from "../shared/Button";
-import { useAuth } from "../../context/AuthContext";
+import { useAuthContext } from "../../context/AuthContext";
 import { useForm } from "../hooks/useForm";
+import { useUserContext } from "../../context/UserContext";
 
-type LoginProps = {
-    setView: (view: string) => void;
-}
-
-export const Login = ({ setView }: LoginProps) => {
+export const Login = () => {
     const [errors, setErrors] = useState("");
     const [loading, setLoading] = useState(false);
-    const { login } = useAuth();
+    const { login } = useAuthContext();
+    const { setUserPageView } = useUserContext();
 
     const {
         handleSubmit,
@@ -22,7 +20,7 @@ export const Login = ({ setView }: LoginProps) => {
                 setErrors("")
                 setLoading(true);
                 await login(data.email, data.password)
-                setView("user")
+                setUserPageView("user")
             } catch {
                 setErrors("Failed to log in")
             }
@@ -61,7 +59,7 @@ export const Login = ({ setView }: LoginProps) => {
                     <Button text="Login" color="#DFCB70" submit disabled={loading} />
                 </div>
                 <div className="Login-Buttons">
-                    <Button text="Sign Up" color="#DFCB70" secondary handleClick={() => setView("signup")} />
+                    <Button text="Sign Up" color="#DFCB70" secondary handleClick={() => setUserPageView("signup")} />
                 </div>
             </div>
         </form>

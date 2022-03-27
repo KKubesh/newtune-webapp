@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBookmark, faChevronRight, faCog } from '@fortawesome/free-solid-svg-icons'
-import { useAuth } from "../../context/AuthContext";
+import { useAuthContext } from "../../context/AuthContext";
 
 type SettingsButtonProps = {
     view: string;
@@ -9,7 +9,7 @@ type SettingsButtonProps = {
 }
 
 export const SettingsButton = ({ view, setView }: SettingsButtonProps) => {
-    const { currentUser } = useAuth();
+    const { currentUser } = useAuthContext();
     const isSettingsView = view === "settings";
 
     if (!currentUser) {

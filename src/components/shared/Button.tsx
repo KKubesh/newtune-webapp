@@ -27,7 +27,7 @@ export const Button = ({
             secondary ? { border: `2px solid ${buttonColor}`, width: width } : { backgroundColor: buttonColor, width: width }}
             className="Button"
             onClick={handleClick}
-            type={submit && "submit" || undefined}
+            type={submit ? "submit" : undefined}
         >
             {text}
             {children && <div className="Button-Child">{children}</div>}

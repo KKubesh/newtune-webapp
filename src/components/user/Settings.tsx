@@ -1,50 +1,14 @@
-// import React from "react";
-// import { useAuth } from "../../context/AuthContext";
-// import { Button } from "../shared/Button";
-
-// type SettingsProps = {
-//     setView: (view: string) => void;
-// }
-
-// export const Settings = ({ setView }: SettingsProps) => {
-//     const { logout } = useAuth();
-//     return (
-//         <>
-//             <div className="Title">Settings</div>
-//             <div className="Login-Container">
-//                 <label>Email</label>
-//                 <input className="User-Input" type="text" placeholder="tempuser.email" />
-
-//                 <label>Change Password</label>
-//                 <input className="User-Input" type="password" />
-//                 <label>Confirm Password</label>
-//                 <input className="User-Input" type="password" />
-//             </div>
-//             <div className="Login-Buttons-Container">
-//                 <div className="Login-Buttons">
-//                     <Button text="Update" color="#DFCB70" handleClick={() => setView("user")} />
-//                 </div>
-//                 <div className="Login-Buttons">
-//                     <Button text="Log Out" color="#DFCB70" secondary handleClick={logout} />
-//                 </div>
-//             </div>
-//         </>
-//     )
-// }
-
 import React, { useState } from "react";
 import { Button } from "../shared/Button";
-import { useAuth } from "../../context/AuthContext";
+import { useAuthContext } from "../../context/AuthContext";
 import { useForm } from "../hooks/useForm";
+import { useUserContext } from "../../context/UserContext";
 
-type SettingsProps = {
-    setView: (view: string) => void;
-}
-
-export const Settings = ({ setView }: SettingsProps) => {
+export const Settings = () => {
     const [errors, setErrors] = useState("");
     const [loading, setLoading] = useState(false);
-    const { logout, currentUser } = useAuth();
+    const { logout, currentUser } = useAuthContext();
+    const { setUserPageView } = useUserContext();
 
     const {
         handleSubmit,
@@ -59,7 +23,7 @@ export const Settings = ({ setView }: SettingsProps) => {
                 setErrors("")
                 setLoading(true);
                 // await signup(data.email, data.password)
-                setView("user")
+                setUserPageView("user")
             } catch {
                 setErrors("Failed to create an account")
             }

@@ -1,19 +1,23 @@
-import { faBookmark } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark, faGaugeSimpleHigh, faGuitar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { ReactComponent as Metronome } from '../../svgs/metronome.svg';
 import { Button } from "../shared/Button";
+import { Song } from "../types";
 
 type SongOverviewType = {
-    song: string;
+    song: Song;
 }
 
 export const SongOverview = ({ song }: SongOverviewType) => {
-    const savedSongs = ["song4", "song8"]
-    const isSaved = savedSongs.includes(song);
+    const savedSongs = ["1-2-3", "A Foggy Day"]
+    const isSaved = savedSongs.includes(song.title);
+    const songSpeed = song.speeds && song.speeds.length > 0 ? ` / ${song.speeds}` : "";
+    const songBpm = song.bpm || "";
 
     return (
         <div className="Catalog-Container">
-            <div className="Title">Some Song Title Make it twice as long</div>
+            <div className="Title">{song.title}</div>
             <div className="Button-Padding">
                 <Button
                     text={isSaved ? "Saved" : "Save"}
@@ -26,42 +30,80 @@ export const SongOverview = ({ song }: SongOverviewType) => {
                 </Button>
             </div>
             <div className="Song-Description">
-                <div className="Subtitle">
-                    Artist
-                </div>
-                <div className="Description">
-                    Mock Name
+                <div>
+                    <div className="Song-Row">
+                        <div>
+                            <div className="Center-Subtitle">
+                                Difficulty
+                            </div>
+                            <div className="Center-Description">
+                                {song.difficulty &&
+                                    <>
+                                        {song.difficulty}
+                                        <FontAwesomeIcon icon={faGaugeSimpleHigh} size="sm" transform="right-2" />
+                                    </>
+                                }
+                            </div>
+                        </div>
+                        <div>
+                            <div className="Center-Subtitle">
+                                Decade
+                            </div>
+                            <div className="Center-Description">
+                                {song.decades}
+                            </div>
+                        </div>
+                        <div>
+                            <div className="Center-Subtitle">
+                                BPM/Speed
+                            </div>
+                            <div className="Center-Description">
+                                {`${songBpm}${songSpeed}`} {(songBpm || songSpeed) && <Metronome style={{ height: "15px", width: "15px", padding: "1px 2px 0px", marginBottom: "-.5px", fill: "#666" }} />}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="Subtitle">
+                        Artist
+                    </div>
+                    <div className="Description">
+                        {song.artists}
+                    </div>
+                    <div className="Subtitle">
+                        Composer
+                    </div>
+                    <div className="Description">
+                        {song.composers}
+                    </div>
+
                 </div>
                 <div className="Subtitle">
                     Genres
                 </div>
                 <div className="Description">
-                    Mock, Rock, R&B
+                    {/* TODO ADD ICONS FOR THE MUSIC */}
+                    {song.genres}
+                    <FontAwesomeIcon icon={faGuitar} size="1x" />
                 </div>
-                <div className="Subtitle">
-                    Difficulty
-                </div>
-                <div className="Description">
-                    2 (Intermediate)
-                </div>
-                <div className="Subtitle">
-                    Speed
-                </div>
-                <div className="Description">
-                    123 Bpm
-                </div>
-                <div className="Subtitle">
-                    Tempo
-                </div>
-                <div className="Description">
-                    Allegro
-                </div>
-                <div className="Subtitle">
-                    Groove
-                </div>
-                <div className="Description">
-                    Swing
-                </div>
+                {song.groove &&
+                    <>
+                        <div className="Subtitle">
+                            Groove
+                        </div>
+                        <div className="Description">
+                            {song.groove}
+                        </div>
+                    </>
+                }
+                {song.features?.[0] &&
+                    <>
+                        <div className="Subtitle">
+                            Features
+                        </div>
+                        <div className="Description">
+                            {song.features}
+                        </div>
+                    </>
+                }
             </div>
         </div>
     )

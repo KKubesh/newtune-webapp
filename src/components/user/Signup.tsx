@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { Button } from "../shared/Button";
-import { useAuth } from "../../context/AuthContext";
+import { useAuthContext } from "../../context/AuthContext";
 import { useForm } from "../hooks/useForm";
+import { useUserContext } from "../../context/UserContext";
 
-type SignupProps = {
-    setView: (view: string) => void;
-}
-
-export const Signup = ({ setView }: SignupProps) => {
+export const Signup = () => {
     const [errors, setErrors] = useState("");
     const [loading, setLoading] = useState(false);
-    const { signup } = useAuth();
+    const { signup } = useAuthContext();
+    const { setUserPageView } = useUserContext();
 
     const {
         handleSubmit,
@@ -25,7 +23,7 @@ export const Signup = ({ setView }: SignupProps) => {
                 setErrors("")
                 setLoading(true);
                 await signup(data.email, data.password)
-                setView("user")
+                setUserPageView("user")
             } catch {
                 setErrors("Failed to create an account")
             }

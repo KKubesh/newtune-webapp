@@ -9,14 +9,14 @@ import { Login } from "./user/Login";
 import { SettingsButton } from "./user/SettingsButton";
 import { Signup } from "./user/Signup";
 import { Settings } from "./user/Settings";
-import { useAuth } from "../context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 
 const loggedin = true;
 
 export default function UserPage() {
     const [view, setView] = useState<string>("user");
     const user = loggedin;
-    const { currentUser } = useAuth();
+    const { currentUser } = useAuthContext();
 
     return (
         <div className="Relative">
@@ -25,10 +25,10 @@ export default function UserPage() {
             <div className="Search-Container-Solid">
                 <div className="Catalog-Container-Solid">
                     <div className="User-Container">
-                        {currentUser && view === "user" && <SavedSongs setView={setView} />}
-                        {currentUser && view === "settings" && <Settings setView={setView} />}
-                        {!currentUser && view === "user" && <Login setView={setView} />}
-                        {!currentUser && view === "signup" && <Signup setView={setView} />}
+                        {currentUser && view === "user" && <SavedSongs />}
+                        {currentUser && view === "settings" && <Settings />}
+                        {!currentUser && view === "user" && <Login />}
+                        {!currentUser && view === "signup" && <Signup />}
                     </div>
                 </div>
             </div>

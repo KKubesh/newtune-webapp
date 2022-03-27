@@ -1,52 +1,127 @@
-import { initializeApp } from "firebase/app";
 import {
-    getFirestore,
     collection,
     getDoc,
     getDocs,
     doc,
+    query,
+    where
 } from "firebase/firestore";
-import { getAuth, signInAnonymously } from "firebase/auth";
+import React from "react";
+import { Filter, FilterCategories, FilterOptions, Filters, Song } from "../components/types";
+import { db } from "../firebase";
 
-const firebaseConfig = {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
-    appId: process.env.REACT_APP_FIREBASE_APP_ID
-};
+const filterDownSongResults = (songResults: Song[][]) => {
+    // order smallest to largest
+    const sortedArray = songResults.sort((a, b) => a.length - b.length).filter((songArray) => songArray !== undefined);
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-export const auth = getAuth(app);
+    const results = sortedArray.reduce((acc: Song[], songList: Song[], currentIndex) => {
+        if (currentIndex === 0) {
+            // start acc with the shortest array first
+            return songList
+        } else {
+            const filterToMatching: Song[] = songList.filter((songA: Song) => {
+                return acc.find((songB: Song) => {
+                    return songA.title === songB.title;
+                });
+            })
+            return filterToMatching;
+        }
+    }, [])
 
-export const authenticateAnonymously = async () => {
-    console.log("Now Authenticating")
-    return await signInAnonymously(getAuth(app));
-};
+    return results;
+}
 
 export const useFirestoreService = () => {
-
-    const getSongs = async () => {
-        return await getDocs(collection(db, "songs"))
+    const getSongs = async (setValue: React.Dispatch<React.SetStateAction<Song[]>>) => {
+        const response = await getDocs(collection(db, "songs"))
+        const responseData = response.docs.map((song: any) => {
+            return song.data();
+        }, []);
+        setValue(responseData);
     }
 
-    const getArrayValues = async ({ stringArray }: { stringArray: string[] }) => {
-        console.log("arrayvalues", stringArray);
+    const getAllFieldOptions = async (
+        filters: Filters,
+        setValue: (value: FilterOptions) => void
+    ) => {
+        const filterCategories = Object.values(FilterCategories)
+        const updatedOptionsFilters = filterCategories.map(async (category: FilterCategories) => {
+            const responseCategory = await getDocs(collection(db, category))
+            const responseCategoryOptions = responseCategory.docs.map((item: any) => {
+                return item.data()[filters[category].keyName];
+            });
 
-        if (!stringArray || stringArray.length) {
-            console.log("RETURN NOTHING")
-            return [];
-        }
-        const output = stringArray.map(async string => {
-            const stringRef = doc(db, string);
-            const output = await getDoc(stringRef);
-            console.log("in OUTPUT")
-            console.log(output.data());
-            return output.data();
+            return {
+                [category]: responseCategoryOptions
+            }
         })
-        return output;
+
+        const optionsResults = await Promise.all(updatedOptionsFilters)
+        const newOptions = filterCategories.reduce((acc: FilterOptions, category: FilterCategories) => {
+            const sortedOptions = optionsResults.find(option => option[category])?.[category].sort()
+            return {
+                ...acc,
+                [category]: sortedOptions
+            }
+        }, {
+            [FilterCategories.DECADES]: [],
+            [FilterCategories.GENRES]: [],
+            [FilterCategories.GROOVES]: [],
+            [FilterCategories.FEATURES]: [],
+            [FilterCategories.SPEEDS]: [],
+            [FilterCategories.DIFFICULTIES]: [],
+        })
+
+        setValue(newOptions);
+    }
+
+    const getArtistsOption = async (setValue: React.Dispatch<React.SetStateAction<any>>) => {
+        const response = await getDocs(collection(db, "songs"))
+        const artistsData: string[] = response.docs.reduce((acc: string[], song: any) => {
+            return [...acc, ...song.data().artists];
+        }, []);
+
+        const uniqueValues = [...new Set(artistsData)];
+        setValue(uniqueValues)
+    }
+
+    const getPathValues = async ({ stringPath, setValue }: { stringPath?: string, setValue: React.Dispatch<React.SetStateAction<string | undefined>> }) => {
+        if (stringPath) {
+            const stringRef = doc(db, "artists/rec7tqmDGZv7xiVKT");
+            const output = await getDoc(stringRef);
+            setValue(output.data()?.name);
+        }
+    }
+
+    const getSongsWhere = async (filterCollection: string, filters?: string[], setValue?: React.Dispatch<React.SetStateAction<Song[]>>) => {
+        if (filters?.length !== 0 && filters !== undefined) {
+            const songsRef = collection(db, "songs");
+            const q = query(songsRef, where(filterCollection, "array-contains-any", filters));
+            const response = await getDocs(q)
+
+
+            if (setValue) {
+                const responseData = response.docs.map((song: any) => {
+                    return song.data();
+                });
+                setValue(responseData);
+            } else {
+                const responseData = response.docs.map((song: any) => {
+                    return song.data();
+                });
+                return responseData;
+            }
+        }
+    }
+
+    const getAllFiltersSongsWhere = async (filters: Filters, setValue: React.Dispatch<React.SetStateAction<Song[]>>) => {
+        const songRequest = Object.values(filters).map(async filter => {
+            return await getSongsWhere(filter.type, filter.selected)
+        })
+        const songResults = await Promise.all(songRequest)
+        const filteredDown = filterDownSongResults(songResults as Song[][]);
+
+        setValue(filteredDown);
     }
 
     const getSongDetails = async ({ song }: { song: string }) => {
@@ -61,9 +136,13 @@ export const useFirestoreService = () => {
     };
 
     return {
-        getArrayValues,
+        getPathValues,
         getSavedSongs,
         getSongs,
         getSongDetails,
+        getArtistsOption,
+        getAllFieldOptions,
+        getSongsWhere,
+        getAllFiltersSongsWhere,
     };
 }; 
