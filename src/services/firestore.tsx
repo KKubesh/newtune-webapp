@@ -32,7 +32,7 @@ const filterDownSongResults = (songResults: Song[][]) => {
 }
 
 export const useFirestoreService = () => {
-    const getSongs = async (setValue: React.Dispatch<React.SetStateAction<Song[]>>) => {
+    const getSongs = async (setValue: React.Dispatch<React.SetStateAction<Song[] | undefined>>) => {
         const response = await getDocs(collection(db, "songs"))
         const responseData = response.docs.map((song: any) => {
             return song.data();
@@ -93,7 +93,7 @@ export const useFirestoreService = () => {
         }
     }
 
-    const getSongsWhere = async (filterCollection: string, filters?: string[], setValue?: React.Dispatch<React.SetStateAction<Song[]>>) => {
+    const getSongsWhere = async (filterCollection: string, filters?: string[], setValue?: React.Dispatch<React.SetStateAction<Song[] | undefined>>) => {
         if (filters?.length !== 0 && filters !== undefined) {
             const songsRef = collection(db, "songs");
             const q = query(songsRef, where(filterCollection, "array-contains-any", filters));
@@ -114,7 +114,7 @@ export const useFirestoreService = () => {
         }
     }
 
-    const getAllFiltersSongsWhere = async (filters: Filters, setValue: React.Dispatch<React.SetStateAction<Song[]>>) => {
+    const getAllFiltersSongsWhere = async (filters: Filters, setValue: React.Dispatch<React.SetStateAction<Song[] | undefined>>) => {
         const songRequest = Object.values(filters).map(async filter => {
             return await getSongsWhere(filter.type, filter.selected)
         })

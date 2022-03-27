@@ -17,17 +17,21 @@ export default function CatalogPage() {
     const { songs, setSongs } = useFilterContext();
 
     useEffect(() => {
-        if (!songs.length) {
+        if (songs === undefined) {
             getSongs(setSongs);
         }
     }, [])
+
+    if (songs === undefined) {
+        return <>Songs are undefined</>
+    }
 
     return (
         <div className="Relative">
             <HeaderMenu rightMenuItem={<SavesAndUserButton />} />
             <SearchButton />
             <div className="Search-Container-Solid">
-                {catalogPageView === "catalog" && <CatalogResults songs={songs || songsMock} />}
+                {catalogPageView === "catalog" && <CatalogResults songs={songs} />}
                 {catalogPageView === "song" &&
                     currentSong &&
                     <SongOverview song={currentSong} />}

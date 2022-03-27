@@ -13,8 +13,8 @@ type FilterContextState = {
     clearFilters: () => void;
     filterOptions: FilterOptions;
     setFilterOptions: (value: FilterOptions) => void;
-    songs: Song[];
-    setSongs: React.Dispatch<React.SetStateAction<Song[]>>;
+    songs?: Song[];
+    setSongs: React.Dispatch<React.SetStateAction<Song[] | undefined>>;
 }
 
 export const FilterContext = createContext<FilterContextState | undefined>(undefined);
@@ -66,7 +66,7 @@ export const FilterProvider = ({
 }: FilterProps) => {
     const [currentFilters, setCurrentFilters] = useState<Filters>(defaultFilters);
     const [filterOptions, setFilterOptions] = useState<FilterOptions>(initialFilterOptions);
-    const [songs, setSongs] = useState<Song[]>([]);
+    const [songs, setSongs] = useState<Song[]>();
 
     const removeFilter = (type: FilterCategories, option: string) => {
         const filterToUpdate = { ...currentFilters[type], selected: [...currentFilters[type].selected] };
