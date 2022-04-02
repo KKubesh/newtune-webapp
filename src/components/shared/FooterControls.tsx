@@ -29,9 +29,13 @@ const FooterCatalog = () => {
 
 const FooterSaves = () => {
     const navigate = useNavigate();
+    const handleSaves = async () => {
+        // await getSongsWhere(currentFilters, setSongs);
+        navigate("../user");
+    }
     return (
         <div className="Footer-Saves">
-            <Button color="#DFCB70" text="Saves" handleClick={() => navigate("../user")} />
+            <Button color="#DFCB70" text="Saves" handleClick={handleSaves} />
         </ div>
     )
 }

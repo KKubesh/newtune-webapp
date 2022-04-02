@@ -10,6 +10,7 @@ import "./filters/filters.css";
 import { useFilterContext } from "../context/FilterContext";
 import { useFirestoreService } from "../services/firestore";
 import { FilterCategories } from "./types";
+import { BPMFilterItem } from "./filters/BPMFilterItem";
 
 export default function FilterPage() {
     const navigate = useNavigate();
@@ -53,6 +54,7 @@ export default function FilterPage() {
                     <FilterItem filter={currentFilters[FilterCategories.FEATURES]} />
                     <FilterItem filter={currentFilters[FilterCategories.SPEEDS]} />
                     <FilterItem filter={currentFilters[FilterCategories.DIFFICULTIES]} />
+                    <BPMFilterItem />
                 </div>
             </div>
             <FooterControls view="catalog" />

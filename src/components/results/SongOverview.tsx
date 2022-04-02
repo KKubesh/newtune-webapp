@@ -4,6 +4,7 @@ import React from "react";
 import { ReactComponent as Metronome } from '../../svgs/metronome.svg';
 import { Button } from "../shared/Button";
 import { Song } from "../types";
+import { IconBackground } from "./IconBackground";
 
 type SongOverviewType = {
     song: Song;
@@ -80,9 +81,7 @@ export const SongOverview = ({ song }: SongOverviewType) => {
                     Genres
                 </div>
                 <div className="Description">
-                    {/* TODO ADD ICONS FOR THE MUSIC */}
                     {song.genres}
-                    <FontAwesomeIcon icon={faGuitar} size="1x" />
                 </div>
                 {song.groove &&
                     <>
@@ -105,6 +104,8 @@ export const SongOverview = ({ song }: SongOverviewType) => {
                     </>
                 }
             </div>
+            <IconBackground genres={song.genres} color="#C4C4C4" scale={3} />
+
         </div>
     )
 }

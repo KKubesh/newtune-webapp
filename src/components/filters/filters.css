@@ -73,6 +73,13 @@
   justify-content: center;
 }
 
+.Filter-Options-Selected {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+}
+
 .Selectable-Button {
   min-width: 40px;
   border: 2px solid #609191;
@@ -163,4 +170,88 @@ input {
   padding: 5px 0px 5px 15px;
   font-size: 1.25rem;
   color: #666;
+}
+
+/* styles for sliders */
+.Slider-Container {
+  padding: 20px;
+}
+
+.Slider-Track {
+  display: inline-block;
+  height: 8px;
+  width: 90%;
+  margin: 0 5%;
+}
+
+.Slider-Tick:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    background: rgba(0, 0, 0, 0.2);
+    height: 5px;
+    width: 2px;
+    transform: translate(-50%, 0.7rem);
+}
+
+.Slider-Tick-Label {
+  position: absolute;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.5);
+  top: 100%;
+  transform: translate(-50%, 1.2rem);
+  white-space: nowrap;
+}
+
+.Slider-Segment-Left {
+  background: #C4C4C4;
+  height: 100%;
+  border-radius: 4px 0px 0px 4px;
+  padding-left: 8px;
+  margin-left: -8px;
+}
+
+.Slider-Segment-Right {
+  background: #C4C4C4;
+  height: 100%;
+  border-radius: 0px 4px 4px 0px;
+  padding-right: 8px;
+  margin-right: -8px;
+}
+
+.Slider-Segment-Selected {
+  background: #609191;
+  height: 100%;
+}
+
+.Slider-Handle {
+  background: #609191;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  font-size: 1.0rem;
+  white-space: nowrap;
+  color: white;
+  font-weight: normal;
+  transform: translateY(0) scale(0.9);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.Slider-Handle-Active {
+  background: #609191;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  font-size: 1.0rem;
+  white-space: nowrap;
+  color: white;
+  font-weight: bold;
+  transform: translateY(-100%) scale(1.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { ReactComponent as AcousticGuitar } from '../../svgs/acoustic-guitar.svg';
 import { useUserContext } from "../../context/UserContext";
 import { SongTile } from "../results/SongTile";
 

@@ -4,6 +4,7 @@ import React from "react";
 import { Song } from "../types";
 import { ReactComponent as Metronome } from '../../svgs/metronome.svg';
 import { useUserContext } from "../../context/UserContext";
+import { IconBackground } from "./IconBackground";
 
 type SongTileProps = {
     song: Song;
@@ -19,7 +20,7 @@ export const SongTile = ({ song, saved = false }: SongTileProps) => {
     }
 
     return (
-        <div className={saved ? "Song-Tile-Container-Saved" : "Song-Tile-Container"} onClick={tileClick}>
+        <div className={saved ? "Song-Tile-Container-Saved" : "Song-Tile-Container"} onClick={tileClick} style={{ backgroundImage: "../../svgs/acoustic-guitar", backgroundRepeat: "no-repeat" }}>
             <div className="Song-Tile">
                 <div className="Song-Text">
                     <div>
@@ -35,6 +36,7 @@ export const SongTile = ({ song, saved = false }: SongTileProps) => {
                         </div>
                     </div>
                 </div>
+                <IconBackground genres={song.genres} saved={saved} />
                 <div className="Song-Tile-Numbers">
                     <div className="Song-Tile-Bpm">
                         {song.bpm &&

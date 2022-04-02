@@ -29,15 +29,18 @@ export const FilterItem = ({ filter }: FilterItemProps) => {
             </div>
             {filterOpen === filter.type &&
                 <div className="Filter-Options-Container">
-                    <div className="Filter-Options">
-                        {initialFilter > 0 && filter.selected.length !== 0 && !isOptionsSelectOpen ?
-                            <SelectedFilters selected={filter.selected} setIsOptionsSelectOpen={setIsOptionsSelectOpen} type={filter.type} /> :
+                    {initialFilter > 0 && filter.selected.length !== 0 && !isOptionsSelectOpen ?
+                        <div className="Filter-Options-Selected">
+                            <SelectedFilters selected={filter.selected} setIsOptionsSelectOpen={setIsOptionsSelectOpen} type={filter.type} />
+                            {filter.selected.length > 2 && <div className="Option-Shadow" />}
+                        </div>
+                        :
+                        <div className="Filter-Options">
                             <OptionsFilters selected={filter.selected} options={filterOptions[filter.type] || []} type={filter.type} />
-                        }
-                    </div>
-                    {filter.selected.length > 2 && !isOptionsSelectOpen && <div className="Option-Shadow" />}
+                        </div>
+                    }
                 </div>
             }
-        </div>
+        </div >
     )
 }

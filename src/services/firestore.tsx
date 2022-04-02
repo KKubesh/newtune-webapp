@@ -7,7 +7,7 @@ import {
     where
 } from "firebase/firestore";
 import React from "react";
-import { Filter, FilterCategories, FilterOptions, Filters, Song } from "../components/types";
+import { Filter, FilterCategories, FilterOptions, FilterProperties, Filters, Song } from "../components/types";
 import { db } from "../firebase";
 
 const filterDownSongResults = (songResults: Song[][]) => {
@@ -29,6 +29,20 @@ const filterDownSongResults = (songResults: Song[][]) => {
     }, [])
 
     return results;
+}
+
+
+const checkSelected = (filters: Filters) => {
+    const filterCategories = Object.values(filters)
+    const count = filterCategories.reduce((acc: number, filter: FilterProperties) => {
+        if (filter.selected.length) {
+            return acc + 1;
+        }
+        return acc;
+    }, 0)
+
+    console.log(count)
+    return count;
 }
 
 export const useFirestoreService = () => {
@@ -115,13 +129,18 @@ export const useFirestoreService = () => {
     }
 
     const getAllFiltersSongsWhere = async (filters: Filters, setValue: React.Dispatch<React.SetStateAction<Song[] | undefined>>) => {
-        const songRequest = Object.values(filters).map(async filter => {
-            return await getSongsWhere(filter.type, filter.selected)
-        })
-        const songResults = await Promise.all(songRequest)
-        const filteredDown = filterDownSongResults(songResults as Song[][]);
+        if (checkSelected(filters) === 0) {
+            console.log("getting all songs")
+            await getSongs(setValue);
+        } else {
+            const songRequest = Object.values(filters).map(async filter => {
+                return await getSongsWhere(filter.type, filter.selected)
+            })
+            const songResults = await Promise.all(songRequest)
+            const filteredDown = filterDownSongResults(songResults as Song[][]);
 
-        setValue(filteredDown);
+            setValue(filteredDown);
+        }
     }
 
     const getSongDetails = async ({ song }: { song: string }) => {
